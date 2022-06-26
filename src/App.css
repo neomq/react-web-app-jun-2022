@@ -1,0 +1,11 @@
+/* Cards */
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover !important;
+}
+
+.card-body span {
+    background-color: #EFF6FF !important;
+    color: #1C7DFF !important;
+}

@@ -4,11 +4,12 @@ import { Projects } from './containers';
 import './App.css';
 
 function App() {
+
   return (
-    <React.Fragment>
+    <div>
       <Navbar />
       <Projects />
-    </React.Fragment>
+    </div>
   );
 }
 
