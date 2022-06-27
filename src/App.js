@@ -1,13 +1,11 @@
 import React from 'react';
-import { Navbar } from './components';
-import { Projects } from './containers';
+import { Projects } from './components';
 import './App.css';
 
 function App() {
 
   return (
     <div>
-      <Navbar />
       <Projects />
     </div>
   );
