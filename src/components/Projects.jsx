@@ -47,7 +47,7 @@ const Projects = () => {
   }, []);
 
   const CardGroup = () => (
-    <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 g-5">
+    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {searchInput.length >= 3 || filteredTags.length !== 0 ? (
         filteredResults.map((p) => (
             <div className="col">
@@ -55,8 +55,8 @@ const Projects = () => {
                 <div className="img">
                   <img src={p.img} className="card-img-top" alt="..." />
                 </div>
-                <div className="card-body">
-                  <h5 className="card-title">{p.title}</h5>
+                <div className="card-body p-4">
+                  <h5 className="card-title mb-3">{p.title}</h5>
                   {p.tags.map( (tag) => (
                     <span className="tags badge rounded-pill me-1">{tag}</span>
                   ))}
@@ -72,8 +72,8 @@ const Projects = () => {
                 <div className="img">
                   <img src={p.img} className="card-img-top" alt="..." />
                 </div>
-                <div className="card-body">
-                  <h5 className="card-title">{p.title}</h5>
+                <div className="card-body p-4">
+                  <h5 className="card-title mb-3">{p.title}</h5>
                   {p.tags.map( (tag) => (
                     <span className="tags badge rounded-pill me-1">{tag}</span>
                   ))}
@@ -109,68 +109,89 @@ const Projects = () => {
     }
   }
 
+  const clearFilter = () => {
+    setFilteredTags([])
+  }
+
   return (
-    <div className="row">
-      <div className="my-4 d-flex justify-content-between">
-        <h3>Projects</h3>
-        <button type="button" className="btn btn-primary ps-2 pe-3"><i className="bi bi-plus-lg me-2"></i>Create Project</button>
+    <div className="row container-fluid m-0">
+      <div className="col-12">
+        <div className="header px-2 my-4 d-flex justify-content-between align-items-center">
+          <h1 className="display-5 m-0">Projects</h1>
+          <div>
+            <button type="button" className="btn rounded-pill ps-3 pe-4 py-2 shadow-sm"><i className="bi bi-plus-lg me-2"></i>Create Project</button>
+          </div>
+        </div>
       </div>
 
-      <div className="col-3">
-
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-search" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Search</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-filter" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Filter by Tags</button>
-          </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-          
-          {/* Search Bar */}
-          <div class="tab-pane fade show active" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab" tabindex="0">
-            <div className="search-bar d-flex align-items-center border">
-              <i className="bi bi-search ms-3"></i>
-              <input className="form-control bg-transparent me-2 border-0"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                onChange={(e) => searchItems(e.target.value)} />
+      <div className="col-12 col-md-3 mb-5">
+        <div className="px-2">
+          <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" 
+                      id="pills-search-tab" 
+                      data-bs-toggle="pill" 
+                      data-bs-target="#pills-search" 
+                      type="button" 
+                      role="tab" 
+                      aria-controls="pills-home" 
+                      aria-selected="true">
+                      Search
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link"
+                      id="pills-filter-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#pills-filter"
+                      type="button"
+                      role="tab"
+                      aria-controls="pills-profile"
+                      aria-selected="false"
+                      onClick={() => clearFilter()}>
+                      Filter
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            {/* Search Bar */}
+            <div class="tab-pane fade show active" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab" tabIndex="0">
+              <div className="search-bar d-flex align-items-center border rounded-2">
+                <i className="bi bi-search ms-3"></i>
+                <input className="form-control bg-transparent me-2 border-0"
+                  type="search"
+                  placeholder="Search.."
+                  aria-label="Search"
+                  onChange={(e) => searchItems(e.target.value)} />
+              </div>
             </div>
-          </div>
-          
-          {/* Filter by Tags */}
-          <div class="tab-pane fade" id="pills-filter" role="tabpanel" aria-labelledby="pills-filter-tab" tabindex="0">
-            <div className="mt-3">
-              <Multiselect data={tags}
-                value={filteredTags}
-                placeholder={"Select Categories"}
-                onChange={value => { setFilteredTags(value) }} />
-              <div className="mt-3 d-grid gap-2">
-                <button className="btn btn-primary"
-                  type="button"
-                  onClick={() => { searchTags() }}>Apply Filter</button>
+            
+            {/* Filter Dropdown */}
+            <div class="tab-pane fade" id="pills-filter" role="tabpanel" aria-labelledby="pills-filter-tab" tabIndex="0">
+              <div className="mt-3">
+                <Multiselect data={tags}
+                  value={filteredTags}
+                  placeholder={"Select Categories"}
+                  onChange={value => { setFilteredTags(value) }} />
+                <div className="mt-3 filter-btn d-grid gap-2">
+                  <button className="btn"
+                    type="button"
+                    onClick={() => { searchTags() }}>Apply Filter</button>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
-
-        
-
-        
-
       </div>
 
-      <div className="col-9">
-        {loading && <div>Loading data...</div>}
-        {error && (<div>{`There is a problem fetching the data - ${error}`}</div>)}
-        {data && <CardGroup />}
+      <div className="col-12 col-md-9">
+        <div className="px-2">
+          {loading && <div>Loading data...</div>}
+          {error && (<div>{`There is a problem fetching the data - ${error}`}</div>)}
+          {data && <CardGroup />}
+        </div>
       </div>
-
     </div>
-
   )
 }
 

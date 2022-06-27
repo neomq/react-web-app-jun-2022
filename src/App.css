@@ -5,6 +5,12 @@
     scroll-behavior: smooth;
 }
 
+.header button {
+    background-color: #1C7DFF;
+    color: #ffffff;
+}
+
+
 /* Cards */
 .project-card img {
     width: 100%;
@@ -15,4 +21,40 @@
 .card-body span {
     background-color: #EFF6FF !important;
     color: #1C7DFF !important;
+}
+
+/* Search & Filter Bar */
+.nav-link {
+    color: #888888;
+}
+
+.nav-link:hover {
+    color: #1C7DFF;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #ffffff !important;
+    color: #1C7DFF;
+    border-radius: 0;
+    border-bottom: 3px solid #1C7DFF;
+}
+
+input:focus,
+input:hover,
+input:active
+{
+    outline: 0px !important;
+    box-shadow: none !important;
+}
+
+.filter-btn button {
+    background-color: none;
+    color: #1C7DFF;
+    border: 1px solid #1C7DFF;
+}
+
+.filter-btn button:hover {
+    background-color: #1C7DFF;
+    border: 1px solid #1C7DFF;
+    color: #ffffff;
 }
