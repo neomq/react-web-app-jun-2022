@@ -46,6 +46,20 @@ const Projects = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const searchTags = () => {
+      if (filteredTags.length !== 0) {
+        const filterByTags = ( list , filters ) => {
+          return list.filter( item => filters.every( filter => item.tags.includes(filter) ))
+        }
+        setFilteredResults( filterByTags(data, filteredTags) )
+      } else {
+        setFilteredResults(data)
+      }
+    }
+    searchTags();
+  }, [filteredTags])
+
   const CardGroup = () => (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {searchInput.length >= 3 || filteredTags.length !== 0 ? (
@@ -93,17 +107,6 @@ const Projects = () => {
         return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
       })
       setFilteredResults(filteredData)
-    } else {
-      setFilteredResults(data)
-    }
-  }
-
-  const searchTags = () => {
-    if (filteredTags.length !== 0) {
-      const filterByTags = ( list , filters ) => {
-        return list.filter( item => filters.every( filter => item.tags.includes(filter) ))
-      }
-      setFilteredResults( filterByTags(data, filteredTags) )
     } else {
       setFilteredResults(data)
     }
@@ -173,11 +176,6 @@ const Projects = () => {
                   value={filteredTags}
                   placeholder={"Select Categories"}
                   onChange={value => { setFilteredTags(value) }} />
-                <div className="mt-3 filter-btn d-grid gap-2">
-                  <button className="btn"
-                    type="button"
-                    onClick={() => { searchTags() }}>Apply Filter</button>
-                </div>
               </div>
             </div>
           </div>
