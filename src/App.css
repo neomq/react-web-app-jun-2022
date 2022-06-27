@@ -10,6 +10,11 @@
     color: #ffffff;
 }
 
+.header button:hover {
+    background-color: #056ef8;
+    border: 1px solid #056ef8;
+    color: #ffffff;
+}
 
 /* Cards */
 .project-card img {
