@@ -10,12 +10,9 @@ const Projects = () => {
   const [data, setData] = useState(null); // store the data
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [tags, setTags] = useState([]); // store list of tags
-
   const [searchInput, setSearchInput] = useState(''); // store keywaord search value
   const [filteredResults, setFilteredResults] = useState([]); // store filtered data (search results)
-
   const [filteredTags, setFilteredTags] = useState([]); // store selected tags to filter
 
   useEffect(() => {
