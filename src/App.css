@@ -10,7 +10,9 @@
     color: #ffffff;
 }
 
-.header button:hover {
+.header button:hover,
+.header button:active,
+.header button:focus {
     background-color: #056ef8;
     border: 1px solid #056ef8;
     color: #ffffff;
